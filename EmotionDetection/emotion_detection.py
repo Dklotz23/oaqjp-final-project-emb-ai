@@ -21,7 +21,7 @@ def emotion_detector(text_to_analyze):
         'anger': json_data['anger'],
         'disgust': json_data['disgust'], 
         'fear': json_data['fear'],
-        'joy_score': json_data['joy'],
+        'joy': json_data['joy'],
         'sadness': json_data['sadness'],
         'dominant_emotion': dominant_emotion
            }
