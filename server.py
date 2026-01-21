@@ -6,12 +6,15 @@ app = Flask("Emotion Detector")
 
 @app.route("/emotionDetector")
 def run_emotion_detector():
-    text_to_analyize = request.args.get("textToAnalyize")
+    text_to_analyize = request.args.get("textToAnalyze")
     response = emotion_detector(text_to_analyize)
 
-    #formated_text = f"For the given statement, the system response is {response}"
+    formated_text = f"""For the given statement, the system response is anger: {response['anger']}, 
+    disgust: {response['disgust']}, fear: {response['fear']}, 
+    joy: {response['joy']} and sadness: {response['sadness']}. 
+    The dominant emotion is {response['dominant_emotion']}."""
 
-    return response
+    return formated_text
 
 @app.route("/")
 def render_index():
