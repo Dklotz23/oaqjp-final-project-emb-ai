@@ -11,11 +11,14 @@ def emotion_detector(text_to_analyze):
 
     response = requests.post(url, json=data, headers=headers)
 
-    data = json.loads(response.text)
+    if response.status_code == 200:
+        data = json.loads(response.text)
 
-    json_data = data['emotionPredictions'][0]['emotion']
+        json_data = data['emotionPredictions'][0]['emotion']
 
-    dominant_emotion = max(json_data, key=json_data.get)
+        dominant_emotion = max(json_data, key=json_data.get)
+    elif response.status_code == 400:
+        return None
 
     return {
         'anger': json_data['anger'],

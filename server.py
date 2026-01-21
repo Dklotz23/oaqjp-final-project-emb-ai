@@ -9,10 +9,13 @@ def run_emotion_detector():
     text_to_analyize = request.args.get("textToAnalyze")
     response = emotion_detector(text_to_analyize)
 
-    formated_text = f"""For the given statement, the system response is anger: {response['anger']}, 
-    disgust: {response['disgust']}, fear: {response['fear']}, 
-    joy: {response['joy']} and sadness: {response['sadness']}. 
-    The dominant emotion is {response['dominant_emotion']}."""
+    if response is None:
+        return 'Invalid Text! Please try again!'
+    else:
+        formated_text = f"""For the given statement, the system response is anger: {response['anger']}, 
+        disgust: {response['disgust']}, fear: {response['fear']}, 
+        joy: {response['joy']} and sadness: {response['sadness']}. 
+        The dominant emotion is {response['dominant_emotion']}."""
 
     return formated_text
 
